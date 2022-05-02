@@ -42,10 +42,14 @@ const createTimeblocks = (timeHour, time) => {
     </span>
     <textarea class="todo" id=${time}></textarea>
     <button type="button" class="btn save-btn" id="btn-${time}"><i class="fa-solid fa-floppy-disk save-icon"></i></button>
+    <button type="button" class="btn save-btn" id="btn-bin-${time}"><i class="fa-solid fa-trash save-icon"></i></button>
     </div>`).appendTo(".container");
 
   $(`#btn-${time}`).click(function () {
     storeInput(time);
+  });
+  $(`#btn-bin-${time}`).click(function () {
+    removeInput(time);
   });
 };
 
@@ -83,7 +87,13 @@ const highlightBlocks = (currentTime) => {
 
 const storeInput = (time) => {
   const input = $(`#${time}`).val();
-  localStorage.setItem(time, input);
+  input ? localStorage.setItem(time, input) : null;
+
+  getInputs();
+};
+
+const removeInput = (time) => {
+  localStorage.removeItem(time);
   getInputs();
 };
 
