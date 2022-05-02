@@ -8,8 +8,8 @@ const weekDay = [
   "Friday",
   "Saturday",
 ];
-const startTime = 9;
-const endTime = 18;
+const startTime = 10;
+const endTime = 20;
 let times = [];
 
 // get current date and time
@@ -39,9 +39,13 @@ const createTimeblocks = (timeHour, time) => {
     <span class="hour">
       ${timeHour}
     </span>
-    <textarea class="todo" id=${time}>To Do Items</textarea>
-    <button type="button" class="btn save-btn"><i class="fa-solid fa-floppy-disk save-icon"></i></button>
+    <textarea class="todo" id=${time}></textarea>
+    <button type="button" class="btn save-btn" id="btn-${time}"><i class="fa-solid fa-floppy-disk save-icon"></i></button>
     </div>`).appendTo(".container");
+
+  $(`#btn-${time}`).click(function () {
+    storeInput(time);
+  });
 };
 
 // add blocks
@@ -52,7 +56,6 @@ const addBlocks = () => {
     const displayTime = `${(i + startTime).toString()}.00`;
     createTimeblocks(displayTime, i + startTime);
   }
-  console.log(times);
 };
 
 // highlight blocks depending on time
@@ -77,7 +80,10 @@ const highlightBlocks = (currentTime) => {
 
 // store user input in local storage
 
-const storeInput = () => {};
+const storeInput = (time) => {
+  const input = $(`#${time}`).val();
+  console.log(input);
+};
 
 getHours();
 const time = getCurrentDate();
