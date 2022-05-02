@@ -33,6 +33,8 @@ body {
   color: var(--light-cyan);
 }
 
+/* time block */
+
 .time-block {
   display: flex;
   flex-direction: row;
@@ -50,11 +52,13 @@ body {
 
 .todo {
   height: 100%;
-  width: 40%;
+  width: 50%;
   border-radius: 0.5rem;
   border: none;
   resize: none;
 }
+
+/* background color for textarea */
 
 .past {
   background-color: var(--past);
@@ -67,6 +71,8 @@ body {
 .future {
   background-color: var(--future);
 }
+
+/* save button */
 
 .save-btn {
   font-size: 2.5rem;
