@@ -8,6 +8,9 @@ const weekDay = [
   "Friday",
   "Saturday",
 ];
+const startTime = 9;
+const endTime = 18;
+let times = [];
 
 // get current date and time
 const getCurrentDate = () => {
@@ -22,27 +25,61 @@ const getCurrentDate = () => {
   return date[4];
 };
 
+const getHours = () => {
+  const length = endTime - startTime;
+  for (let i = 0; i < length; i++) {
+    times.push(i + startTime);
+  }
+};
+
 // create timeblocks
-const createTimeblocks = (timeHour) => {
+const createTimeblocks = (timeHour, time) => {
   $(`
-    <div class="time-block">
+    <div class="time-block" >
     <span class="hour">
       ${timeHour}
     </span>
-    <textarea class="todo">To Do Items</textarea>
+    <textarea class="todo" id=${time}>To Do Items</textarea>
     <button type="button" class="btn save-btn"><i class="fa-solid fa-floppy-disk save-icon"></i></button>
     </div>`).appendTo(".container");
 };
 
+// add blocks
+const addBlocks = () => {
+  const noOfBlocks = endTime - startTime;
+
+  for (let i = 0; i < noOfBlocks; i++) {
+    const displayTime = `${(i + startTime).toString()}.00`;
+    createTimeblocks(displayTime, i + startTime);
+  }
+  console.log(times);
+};
+
 // highlight blocks depending on time
-const highlightBlocks = () => {};
+const highlightBlocks = (currentTime) => {
+  const currentHour = currentTime.split(":")[0];
+  const timeIndex = times.findIndex((element) => element == `${currentHour}`);
+
+  // present time
+
+  $(`#${currentHour}`).addClass("present");
+
+  // past time
+  for (let i = 0; i < timeIndex; i++) {
+    $(`#${times[i]}`).addClass("past");
+  }
+
+  // future time
+  for (let i = timeIndex + 1; i < times.length; i++) {
+    $(`#${times[i]}`).addClass("future");
+  }
+};
 
 // store user input in local storage
 
 const storeInput = () => {};
 
+getHours();
 const time = getCurrentDate();
-createTimeblocks("7.00");
-createTimeblocks("8.00");
-createTimeblocks("9.00");
-createTimeblocks("10.00");
+addBlocks();
+highlightBlocks(time);
