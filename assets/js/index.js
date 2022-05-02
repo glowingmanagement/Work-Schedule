@@ -11,6 +11,7 @@ const weekDay = [
 const startTime = 10;
 const endTime = 20;
 let times = [];
+// let todo = JSON.parse(localStorage.getItem("todoList")) || [];
 
 // get current date and time
 const getCurrentDate = () => {
@@ -82,10 +83,20 @@ const highlightBlocks = (currentTime) => {
 
 const storeInput = (time) => {
   const input = $(`#${time}`).val();
-  console.log(input);
+  localStorage.setItem(time, input);
+  getInputs();
 };
 
+const getInputs = () => {
+  times.forEach((element) => {
+    const item = localStorage.getItem(element);
+    $(`#${element}`).val(item);
+  });
+};
+
+// functions
 getHours();
 const time = getCurrentDate();
 addBlocks();
 highlightBlocks(time);
+getInputs();
