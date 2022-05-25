@@ -1,0 +1,83 @@
+:root {
+  --bdazzled-blue: #3d5a80ff;
+  --dark-sky-blue: #98c1d9ff;
+  --light-cyan: #e0fbfcff;
+  --burnt-sienna: #ee6c4dff;
+  --gunmetal: #293241ff;
+  --past: #BBBBBB;
+  --present: #FF0909;
+  --future: #14FF00;
+
+}
+
+html {
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: var(--light-cyan);
+  font-size: 1.6rem;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--gunmetal);
+  color: var(--light-cyan);
+}
+
+/* time block */
+
+.time-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin: 10px;
+}
+
+.hour {
+  border-top: 1px dotted;
+  height: 100%;
+  padding: 1rem;
+}
+
+.todo {
+  height: 100%;
+  width: 50%;
+  border-radius: 0.5rem;
+  border: none;
+  resize: none;
+}
+
+/* background color for textarea */
+
+.past {
+  background-color: var(--past);
+}
+
+.present {
+  background-color: var(--present);
+}
+
+.future {
+  background-color: var(--future);
+}
+
+/* save button */
+
+.save-btn {
+  font-size: 2.5rem;
+}
+
+.save-btn:hover {
+  color: var(--dark-sky-blue);
+}
